@@ -1,0 +1,94 @@
+.hbHaut {
+    -fx-background-color :  #2E71B2;
+}
+
+.vbLateral {
+    -fx-background-color : #5088c2;
+}
+
+.btnCote {
+    -fx-background-position: left 3% bottom 50%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 50 50;
+    -fx-background-color: transparent;
+    -fx-font-size: 28 px;
+    -fx-text-fill: white;
+
+}
+
+.btnAccueilEn {
+    -fx-background-image: url("../img/accueil.png");
+    -fx-label-padding: 0 0 0 -65;
+}
+
+.btnMdpEn {
+    -fx-background-size: 40 50;
+    -fx-background-position: left 5% bottom 50%;
+    -fx-label-padding: 0 0 0 -46;
+    -fx-background-image: url("../img/cadenas.png");
+}
+
+.btnAccueilFr {
+    -fx-background-image: url("../img/accueil.png");
+    -fx-label-padding: 0 0 0 35;
+}
+
+.btnMdpFr {
+    -fx-background-size: 40 50;
+    -fx-background-position: left 5% bottom 50%;
+    -fx-background-image: url("../img/cadenas.png");
+}
+
+.btnNotes {
+    -fx-background-image: url("../img/notes.png");
+    -fx-label-padding: 0 0 0 -105;
+}
+
+.btnRetour {
+    -fx-background-image: url("../img/back.png");
+    -fx-background-size: 40 40;
+    -fx-background-color: transparent;
+}
+
+.btnValiderNoir {
+    -fx-background-image: url("../img/valider.png");
+    -fx-background-size: 40 40;
+    -fx-background-color: transparent;
+}
+
+.btnValiderVert {
+    -fx-background-image: url("../img/valider_vert.png");
+    -fx-background-size: 40 40;
+    -fx-background-color: transparent;
+}
+
+.btnGenererMdp {
+    -fx-background-image: url("../img/generer.png");
+    -fx-background-size: 40 40;
+    -fx-background-color: transparent;
+}
+
+.btnOeil {
+    -fx-background-image: url("../img/oeil.png");
+    -fx-background-size: 30 30;
+    -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.btnOeilBarrer {
+    -fx-background-image: url("../img/oeilBarrer.png");
+    -fx-background-size: 30 30;
+    -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.apGenererMdp {
+    -fx-background-image: url("../img/background_generer.png");
+    -fx-background-size: 1920 1010;
+}
+
+.element {
+    -fx-background-color: #c9c9c9;
+}

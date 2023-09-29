@@ -1,0 +1,143 @@
+package software.DataBase;
+
+import software.FirstPassController;
+import software.Password;
+
+import java.math.BigInteger;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class StockageMotDePasseDataBase {
+
+    public void create(MotDePasse mdp) {
+        Connection cn = DataBaseConnection.getInstance().getConnection();
+        String rq = "INSERT INTO mdp (nomSitePart11, nomSitePart12, nomSitePart21, nomSitePart22, lienSite, userNamePart11, userNamePart12, userNamePart21, userNamePart22, notes, clefPubliquePart11, clefPubliquePart12, clefPubliquePart21, clefPubliquePart22, clefPubliquePart31, clefPubliquePart32, clefPriveePart11, clefPriveePart12, mdpPart11, mdpPart12, mdpPart21, mdpPart22) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement ps = cn.prepareStatement(rq)) {
+            ArrayList<String[]> arrayTabs = new ArrayList<>();
+            arrayTabs.add(new String[]{});arrayTabs.add(new String[]{});arrayTabs.add(new String[]{});arrayTabs.add(new String[]{});arrayTabs.add(new String[]{});arrayTabs.add(new String[]{});arrayTabs.add(new String[]{});arrayTabs.add(new String[]{});arrayTabs.add(new String[]{});arrayTabs.add(new String[]{});
+            setTabs(mdp, arrayTabs);
+            String note;
+            if (mdp.getNotes() == null) note = "";
+            else note = mdp.getNotes();
+            ps.setString(1, arrayTabs.get(0)[0]);
+            ps.setString(2, arrayTabs.get(0)[1]);
+            ps.setString(3, arrayTabs.get(1)[0]);
+            ps.setString(4, arrayTabs.get(1)[1]);
+            ps.setString(5, mdp.getLien());
+            ps.setString(6, arrayTabs.get(2)[0]);
+            ps.setString(7, arrayTabs.get(2)[1]);
+            ps.setString(8, arrayTabs.get(3)[0]);
+            ps.setString(9, arrayTabs.get(3)[1]);
+            ps.setString(10, note);
+            ps.setString(11, arrayTabs.get(4)[0]);
+            ps.setString(12, arrayTabs.get(4)[1]);
+            ps.setString(13, arrayTabs.get(5)[0]);
+            ps.setString(14, arrayTabs.get(5)[1]);
+            ps.setString(15, arrayTabs.get(6)[0]);
+            ps.setString(16, arrayTabs.get(6)[1]);
+            ps.setString(17, arrayTabs.get(7)[0]);
+            ps.setString(18, arrayTabs.get(7)[1]);
+            ps.setString(19, arrayTabs.get(8)[0]);
+            ps.setString(20, arrayTabs.get(8)[1]);
+            ps.setString(21, arrayTabs.get(9)[0]);
+            ps.setString(22, arrayTabs.get(9)[1]);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void delete(MotDePasse mdp) {
+        Connection cn = DataBaseConnection.getInstance().getConnection();
+        String rq = "DELETE FROM mdp WHERE nomSitePart11 = ? AND nomSitePart12 = ? AND nomSitePart21 = ? AND nomSitePart22 = ? AND lienSite = ? AND userNamePart11 = ? AND userNamePart12 = ? AND userNamePart21 = ? AND userNamePart22 = ? AND clefPriveePart11 = ? AND clefPriveePart12 = ? AND mdpPart11 = ? AND mdpPart12 = ? AND mdpPart21 = ? AND mdpPart22 = ?";
+        try (PreparedStatement ps = cn.prepareStatement(rq)) {
+            ArrayList<String[]> arrayTabs = new ArrayList<>();
+            arrayTabs.add(new String[]{});arrayTabs.add(new String[]{});arrayTabs.add(new String[]{});arrayTabs.add(new String[]{});arrayTabs.add(new String[]{});arrayTabs.add(new String[]{});arrayTabs.add(new String[]{});arrayTabs.add(new String[]{});arrayTabs.add(new String[]{});arrayTabs.add(new String[]{});
+            setTabs(mdp, arrayTabs);
+            ps.setString(1, arrayTabs.get(0)[0]);
+            ps.setString(2, arrayTabs.get(0)[1]);
+            ps.setString(3, arrayTabs.get(1)[0]);
+            ps.setString(4, arrayTabs.get(1)[1]);
+            ps.setString(5, mdp.getLien());
+            ps.setString(6, arrayTabs.get(2)[0]);
+            ps.setString(7, arrayTabs.get(2)[1]);
+            ps.setString(8, arrayTabs.get(3)[0]);
+            ps.setString(9, arrayTabs.get(3)[1]);
+            ps.setString(10, arrayTabs.get(7)[0]);
+            ps.setString(11, arrayTabs.get(7)[1]);
+            ps.setString(12, arrayTabs.get(8)[0]);
+            ps.setString(13, arrayTabs.get(8)[1]);
+            ps.setString(14, arrayTabs.get(9)[0]);
+            ps.setString(15, arrayTabs.get(9)[1]);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<MotDePasse> getAll() {
+        ArrayList<MotDePasse> listMdp = new ArrayList<>();
+        Connection cn = DataBaseConnection.getInstance().getConnection();
+        String rq = "SELECT * FROM mdp";
+        try (PreparedStatement ps = cn.prepareStatement(rq)) {
+            try (ResultSet result = ps.executeQuery()){
+                while (result.next()) {
+                    Object[] nomSiteChiffre = new Object[] {new BigInteger(result.getString("nomSitePart11") + result.getString("nomSitePart12")),
+                            new BigInteger(result.getString("nomSitePart21") + result.getString("nomSitePart22"))};
+                    Object[] clefPublique = new Object[] {new BigInteger(result.getString("clefPubliquePart11") + result.getString("clefPubliquePart12")),
+                            new BigInteger(result.getString("clefPubliquePart21") + result.getString("clefPubliquePart22")),
+                            new BigInteger(result.getString("clefPubliquePart31") + result.getString("clefPubliquePart32"))};
+                    BigInteger clefPrivee = new BigInteger(result.getString("clefPriveePart11") + result.getString("clefPriveePart12"));
+                    Object[] keys = new Object[] {clefPublique, clefPrivee};
+                    String lienSite = result.getString("lienSite");
+                    String notes = result.getString("notes");
+                    Object[] userNameChiffre = new Object[] {new BigInteger(result.getString("userNamePart11") + result.getString("userNamePart12")),
+                            new BigInteger(result.getString("userNamePart21") + result.getString("userNamePart22"))};
+                    Object[] mdpChiffre = new Object[] {new BigInteger(result.getString("mdpPart11") + result.getString("mdpPart12")),
+                            new BigInteger(result.getString("mdpPart21") + result.getString("mdpPart22"))};
+                    String nomSite = Security.deChiffrerExpoMod(Security.deChiffrerElGamal(nomSiteChiffre, keys));
+                    String userName = Security.deChiffrerExpoMod(Security.deChiffrerElGamal(userNameChiffre, keys));
+                    String mdp = Security.deChiffrerExpoMod(Security.deChiffrerElGamal(mdpChiffre, keys));
+                    MotDePasse password = new MotDePasse(userName, nomSite, lienSite, clefPublique, clefPrivee, mdp, notes);
+                    password.setLoginChiffrer(new String[] {userNameChiffre[0].toString(), userNameChiffre[1].toString()});
+                    password.setNomChiffrer(new String[] {nomSiteChiffre[0].toString(), nomSiteChiffre[1].toString()});
+                    password.setMdpChiffrer(new String[] {mdpChiffre[0].toString(), mdpChiffre[1].toString()});
+                    listMdp.add(password);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setTabs(MotDePasse mdp, ArrayList<String[]> arrayTabs) {
+        String[] nom = mdp.getNomChiffrer();
+        String[] userName = mdp.getLoginChiffrer();
+        String[] clefPublique = {mdp.getClefPublique()[0].toString(), mdp.getClefPublique()[1].toString(), mdp.getClefPublique()[2].toString()};
+        String[] password = mdp.getMdpChiffrer();
+        arrayTabs.set(0, new String[] {nom[0].substring(0, nom[0].length() / 2), nom[0].substring(nom[0].length() /2)});
+        arrayTabs.set(1, new String[] {nom[1].substring(0, nom[1].length() / 2), nom[1].substring(nom[1].length() /2)});
+        arrayTabs.set(2, new String[] {userName[0].substring(0, userName[0].length() / 2), userName[0].substring(userName[0].length() / 2)});
+        arrayTabs.set(3, new String[] {userName[1].substring(0, userName[1].length() / 2), userName[1].substring(userName[1].length() / 2)});
+        arrayTabs.set(4, new String[] {clefPublique[0].substring(0, clefPublique[0].length() / 2), clefPublique[0].substring(clefPublique[0].length() / 2)});
+        arrayTabs.set(5, new String[] {clefPublique[1].substring(0, clefPublique[1].length() / 2), clefPublique[1].substring(clefPublique[1].length() / 2)});
+        arrayTabs.set(6, new String[] {clefPublique[2].substring(0, clefPublique[2].length() / 2), clefPublique[2].substring(clefPublique[2].length() / 2)});
+        arrayTabs.set(7, new String[] {mdp.getClefPrivee().toString().substring(0, mdp.getClefPrivee().toString().length() / 2), mdp.getClefPrivee().toString().substring(mdp.getClefPrivee().toString().length() / 2)});
+        arrayTabs.set(8, new String[] {password[0].substring(0, password[0].length() / 2), password[0].substring(password[0].length() / 2)});
+        arrayTabs.set(9, new String[] {password[1].substring(0, password[1].length() / 2), password[1].substring(password[1].length() / 2)});
+    }
+
+    public void updateDataChiffree(MotDePasse mdp) {
+        Object[] keys = new Object[] {mdp.getClefPublique(), mdp.getClefPrivee()};
+        Object[] temp = Security.chiffrerElGamal(Security.chiffrerExpoMod(mdp.getLogin()), keys);
+        mdp.setLoginChiffrer(new String[] {temp[0].toString(), temp[1].toString()});
+        temp = Security.chiffrerElGamal(Security.chiffrerExpoMod(mdp.getNom()), keys);
+        mdp.setNomChiffrer(new String[] {temp[0].toString(), temp[1].toString()});
+        temp = Security.chiffrerElGamal(Security.chiffrerExpoMod(mdp.getMdp()), keys);
+        mdp.setMdpChiffrer(new String[] {temp[0].toString(), temp[1].toString()});
+    }
+}
