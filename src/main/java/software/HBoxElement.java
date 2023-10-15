@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Screen;
 
 
 public class HBoxElement extends HBox {
@@ -30,13 +31,14 @@ public class HBoxElement extends HBox {
     }
 
     private void styliser() {
-        this.setMaxSize(1599, 200);
-        this.setMinSize(1599, 200);
+        double screenWidth = Screen.getPrimary().getVisualBounds().getWidth();
+        this.setMaxSize(screenWidth * (1599.0/1920.0), 200);
+        this.setMinSize(screenWidth * (1599.0/1920.0), 200);
         for (Node e : this.getChildren()) {
             e.getStyleClass().add("element");
-            ((BorderPane)e).setMaxSize(430, 200);
-            ((BorderPane)e).setMinSize(430, 200);
-            setMargin(e, new Insets(0, 30, 0, 20));
+            ((BorderPane)e).setMaxSize(screenWidth * (430.0/1920.0), 200);
+            ((BorderPane)e).setMinSize(screenWidth * (430.0/1920.0), 200);
+            setMargin(e, new Insets(0, screenWidth * (30.0/1920.0), 0, screenWidth * (20.0/1920.0)));
         }
     }
 }

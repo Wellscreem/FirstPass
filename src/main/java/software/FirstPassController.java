@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -28,6 +29,10 @@ public class FirstPassController {
 
     public static List<Password> listPassword = new ArrayList<>();
 
+    @FXML
+    private ImageView imgViewlogo;
+    @FXML
+    private HBox hbTop;
     @FXML
     private TextField searchBar;
     @FXML
@@ -89,6 +94,11 @@ public class FirstPassController {
         btnAdd.setLayoutX(screenWidth * 0.9375);
         btnAdd.setLayoutY(screenHeight * (890.0/1080.0));
         searchBar.setPrefWidth(screenWidth * (1188.0/1920.0));
+        HBox.setMargin(searchBar, new Insets(0, 0, 0, screenWidth * (200.0/1920.0)));
+        HBox.setMargin(languageChoiceBox, new Insets(0, 0, 0, screenWidth * (50.0/1920.0)));
+        HBox.setMargin(imgViewlogo, new Insets(0, 0, 0, screenWidth * (50.0/1920.0)));
+        languageChoiceBox.setPrefWidth(screenWidth * (150.0/1920.0));
+        hbTop.setPrefWidth(screenWidth);
         acSP.setPrefHeight(vb.getMinHeight());
     }
 
