@@ -12,6 +12,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import software.DataBase.PasswordManager;
 import software.Languages.English;
@@ -77,6 +78,17 @@ public class FirstPassController {
             VBox.setMargin(e, new Insets(20, 0, 30, 0));
         }
         btnAdd.setBackground(new Background(new BackgroundImage(new Image(Objects.requireNonNull(FirstPass.class.getResourceAsStream("img/add.png"))), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(100, 100, false, false, false, false))));
+
+        double screenWidth = Screen.getPrimary().getVisualBounds().getWidth();
+        double screenHeight = Screen.getPrimary().getVisualBounds().getHeight();
+        String osName = System.getProperty("os.name");
+        if (osName.contains("Windows"))
+            screenHeight += 20;
+        else if (osName.contains("Mac OS"))
+            screenHeight += 25;
+        btnAdd.setLayoutX(screenWidth * 0.9375);
+        btnAdd.setLayoutY(screenHeight * (890.0/1080.0));
+        searchBar.setPrefWidth(screenWidth * (1188.0/1920.0));
         acSP.setPrefHeight(vb.getMinHeight());
     }
 
