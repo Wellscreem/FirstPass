@@ -194,7 +194,9 @@ public class UpdateAdd {
         acAllFields.prefWidth(screenWidth);
         oeil.setLayoutX(screenWidth * (910/1920.0));
         double height = 725.0;
-        if (osName.contains("Mac OS"))
+        if (osName.contains("Windows"))
+            screenHeight += 20;
+        else if (osName.contains("Mac OS"))
             height = 720.0;
         oeil.setLayoutY(screenHeight * (height/1080.0));
     }
