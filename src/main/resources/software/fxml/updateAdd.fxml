@@ -13,14 +13,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1010.0" prefWidth="1920.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="software.UpdateAdd">
+<AnchorPane prefHeight="1010.0" prefWidth="1920.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="software.UpdateAdd">
    <StackPane fx:id="spAc" prefHeight="1010.0" prefWidth="1920.0">
       <children>
-      <AnchorPane prefHeight="1010.0" prefWidth="1920.0" style="-fx-background-color: white;">
+      <AnchorPane fx:id="acAllFields" prefHeight="1010.0" prefWidth="1920.0" style="-fx-background-color: white;">
           <children>
-              <HBox layoutX="135.0" prefHeight="1010.0" prefWidth="1620.0">
+              <HBox fx:id="hbContent" layoutX="135.0" prefHeight="1010.0" prefWidth="1620.0">
                   <children>
-                      <VBox prefHeight="1010.0" prefWidth="840.0">
+                      <VBox fx:id="vbPasswordFields" prefHeight="1010.0" prefWidth="840.0">
                           <children>
                               <Label fx:id="labelTitre" text="Modifier le mot de passe">
                                   <font>
@@ -119,9 +119,9 @@
                         <Button mnemonicParsing="false" onAction="#swapSPGererMdp" prefHeight="40.0" prefWidth="40.0" styleClass="btnGenererMdp" />
                           </children>
                       </VBox>
-                      <VBox prefHeight="1010.0" prefWidth="592.0">
+                      <VBox fx:id="vbLabelNotesFields" prefHeight="1010.0" prefWidth="592.0">
                           <children>
-                              <Label text="Notes">
+                              <Label fx:id="labelNotes" text="Notes">
                                   <font>
                                       <Font size="30.0" />
                                   </font>
@@ -151,7 +151,7 @@
       </AnchorPane>
          <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="1010.0" prefWidth="1920.0" styleClass="apGenererMdp" StackPane.alignment="CENTER">
             <children>
-               <VBox alignment="CENTER" layoutX="738.0" layoutY="251.0" prefHeight="495.0" prefWidth="444.0" spacing="30.0" style="-fx-border-color: black; -fx-background-color: white; -fx-opacity: 1;">
+               <VBox fx:id="vbGenerate" alignment="CENTER" layoutX="738.0" layoutY="251.0" prefHeight="495.0" prefWidth="444.0" spacing="30.0" style="-fx-border-color: black; -fx-background-color: white; -fx-opacity: 1;">
                   <children>
                      <Label fx:id="labelGeneratePassword" text="Générer un mot de passe">
                         <font>

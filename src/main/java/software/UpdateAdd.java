@@ -3,6 +3,7 @@ package software;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import software.DataBase.PasswordManager;
 import software.Languages.LanguagesStrategy;
@@ -26,7 +28,7 @@ public class UpdateAdd {
     @FXML
     private Slider sliderLengthMdp;
     @FXML
-    private Label labelTitre, labelSliderLenghtMdp, labelUserName, labelName, labelPassword, labelGeneratePassword;
+    private Label labelTitre, labelSliderLenghtMdp, labelUserName, labelName, labelPassword, labelGeneratePassword, labelNotes;
     @FXML
     private Button valider, oeil, saveBtn, cancelBtn;
     @FXML
@@ -34,11 +36,15 @@ public class UpdateAdd {
     @FXML
     private TextArea notes;
     @FXML
-    private HBox hbPointsNoirs;
+    private HBox hbPointsNoirs, hbContent;
     @FXML
     private StackPane spMdp, spAc;
     @FXML
     private CheckBox cbMin, cbNb, cbMaj, cbCharSpe;
+    @FXML
+    private VBox vbLabelNotesFields, vbGenerate, vbPasswordFields;
+    @FXML
+    private AnchorPane acAllFields;
 
     private boolean showMdp = false;
     private boolean peutValider = false;
@@ -165,6 +171,30 @@ public class UpdateAdd {
         updateLanguage();
         swapSPGererMdp();
         styliserAfficherCacherMdp();
+        //TODO ajouter ici le code pour le responsive
+        double screenWidth = Screen.getPrimary().getVisualBounds().getWidth();
+        double screenHeight = Screen.getPrimary().getVisualBounds().getHeight();
+        String osName = System.getProperty("os.name");
+        if (osName.contains("Windows"))
+            screenHeight += 20;
+        else if (osName.contains("Mac OS"))
+            screenHeight += 25;
+        vbGenerate.setLayoutX(screenWidth * (738.0/1920.0));
+        vbGenerate.setLayoutY(screenHeight * (251.0/1080.0));
+        HBox.setMargin(vbLabelNotesFields, new Insets(0, 0, 0, (screenWidth * (150.0/1920.0))));
+        hbContent.setLayoutX(screenWidth * (135.0/1920.0));
+        valider.setLayoutX(screenWidth * (1830.0/1920.0));
+        valider.setLayoutY(screenHeight * (55.0/1080.0));
+        nom.setPrefWidth(screenWidth * (809.0/1920.0));
+        url.setPrefWidth(screenWidth * (809.0/1920.0));
+        userName.setPrefWidth(screenWidth * (809.0/1920.0));
+        mdp.setPrefWidth(screenWidth * (809.0/1920.0));
+        hbPointsNoirs.setPrefWidth(screenWidth * (809.0/1920.0));
+        vbPasswordFields.setPrefWidth(screenWidth * (840.0/1920.0));
+        vbLabelNotesFields.setPrefWidth(screenWidth * (592.0/1920.0));
+        acAllFields.prefWidth(screenWidth);
+        oeil.setLayoutX(screenWidth * (910/1920.0));
+        oeil.setLayoutY(screenHeight * (720/1080.0));
     }
 
     public void swapSPGererMdp() {
