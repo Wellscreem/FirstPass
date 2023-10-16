@@ -171,7 +171,6 @@ public class UpdateAdd {
         updateLanguage();
         swapSPGererMdp();
         styliserAfficherCacherMdp();
-        //TODO ajouter ici le code pour le responsive
         double screenWidth = Screen.getPrimary().getVisualBounds().getWidth();
         double screenHeight = Screen.getPrimary().getVisualBounds().getHeight();
         String osName = System.getProperty("os.name");
@@ -194,7 +193,10 @@ public class UpdateAdd {
         vbLabelNotesFields.setPrefWidth(screenWidth * (592.0/1920.0));
         acAllFields.prefWidth(screenWidth);
         oeil.setLayoutX(screenWidth * (910/1920.0));
-        oeil.setLayoutY(screenHeight * (720/1080.0));
+        double height = 725.0;
+        if (osName.contains("Mac OS"))
+            height = 720.0;
+        oeil.setLayoutY(screenHeight * (height/1080.0));
     }
 
     public void swapSPGererMdp() {
